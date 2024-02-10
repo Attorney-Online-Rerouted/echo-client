@@ -45,7 +45,6 @@ add_executable(echo-client
   src/interfaces/server_dialog.h
   src/lobby.h src/lobby.cpp
   src/main.cpp
-  src/misc_functions.h src/misc_functions.cpp
   src/networkmanager.h src/networkmanager.cpp
   src/options.h src/options.cpp
   src/packet_distribution.cpp

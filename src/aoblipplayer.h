@@ -11,7 +11,8 @@
 #include <QWidget>
 #include <string.h>
 
-class AOBlipPlayer {
+class AOBlipPlayer
+{
 public:
   AOBlipPlayer(QWidget *parent, AOApplication *p_ao_app);
 

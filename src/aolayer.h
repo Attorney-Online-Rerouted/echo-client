@@ -1,15 +1,15 @@
 #ifndef AOLAYER_H
 #define AOLAYER_H
 
+#include <QBitmap>
 #include <QDebug>
 #include <QElapsedTimer>
 #include <QImageReader>
 #include <QLabel>
-#include <QTimer>
-#include <QBitmap>
-#include <QtConcurrent/QtConcurrentRun>
 #include <QMutex>
+#include <QTimer>
 #include <QWaitCondition>
+#include <QtConcurrent/QtConcurrentRun>
 
 class AOApplication;
 class VPath;
@@ -19,13 +19,13 @@ class VPath;
 // AOLayer handles all animations both inside and outside
 // the viewport. It was originally devised as a layering
 // system, but turned into a full refactor of the existing
-// animation code. 
+// animation code.
 //
 // AOLayer has six subclasses, all of which differ mainly in
 // how they handle path resolution.
 //
 //  - BackgroundLayer: self-explanatory, handles files found in base/background
-//  - CharLayer: handles all the "wonderful" quirks of character path resolution 
+//  - CharLayer: handles all the "wonderful" quirks of character path resolution
 //  - SplashLayer: handles elements that can either be provided by a misc/ directory
 //    or by the theme - speedlines, shouts, WT/CE, et cetera
 //  - EffectLayer: this is basically a dummy layer since effects do their own wonky
@@ -35,28 +35,29 @@ class VPath;
 //
 // For questions comments or concerns, bother someone else
 
-class AOLayer : public QLabel {
+class AOLayer : public QLabel
+{
   Q_OBJECT
 
 public:
   AOLayer(QWidget *p_parent, AOApplication *p_ao_app);
 
-  QString filename;    // file name without extension, i.e. "witnesstestimony"
-  int static_duration; // time in ms for static images to be displayed, if
-                       // applicable. set to 0 for infinite
-  int max_duration;    // maximum duration in ms, image will be culled if it is
-                       // exceeded. set this to 0 for infinite duration
+  QString filename;       // file name without extension, i.e. "witnesstestimony"
+  int static_duration;    // time in ms for static images to be displayed, if
+                          // applicable. set to 0 for infinite
+  int max_duration;       // maximum duration in ms, image will be culled if it is
+                          // exceeded. set this to 0 for infinite duration
   bool play_once = false; // Whether to loop this animation or not
   bool cull_image = true; // if we're done playing this animation, should we
                           // hide it? also controls durational culling
-  // Are we loading this from the same frame we left off on? 
+  // Are we loading this from the same frame we left off on?
   bool continuous = false;
   // Whether or not to forcibly bypass the simple check done by start_playback
   // and use the existent value of continuous instead
   bool force_continuous = false;
   Qt::TransformationMode transform_mode = Qt::FastTransformation; // transformation mode to use for this image
-  bool stretch = false; // Should we stretch/squash this image to fill the screen?
-  bool masked = true; // Set a mask to the dimensions of the widget?
+  bool stretch = false;                                           // Should we stretch/squash this image to fill the screen?
+  bool masked = true;                                             // Set a mask to the dimensions of the widget?
 
   // Set the movie's image to provided paths, preparing for playback.
   void start_playback(QString p_image);
@@ -148,11 +149,10 @@ private:
 
   // used in populate_vectors
   void load_next_frame();
-  std::atomic_bool exit_loop { false }; //awful solution but i'm not fucking using QThread
+  std::atomic_bool exit_loop{false}; // awful solution but i'm not fucking using QThread
   QFuture<void> frame_loader;
   QMutex mutex;
   QWaitCondition frameAdded;
-
 
 signals:
   void done();
@@ -163,21 +163,23 @@ protected slots:
   virtual void movie_ticker();
 };
 
-class BackgroundLayer : public AOLayer {
+class BackgroundLayer : public AOLayer
+{
   Q_OBJECT
 public:
   BackgroundLayer(QWidget *p_parent, AOApplication *p_ao_app);
   void load_image(QString p_filename);
 };
 
-class CharLayer : public AOLayer {
+class CharLayer : public AOLayer
+{
   Q_OBJECT
 public:
   CharLayer(QWidget *p_parent, AOApplication *p_ao_app);
   QString current_emote = ""; // name of the emote we're using
-  bool is_preanim;     // equivalent to the old play_once, if true we don't want
-                       // to loop this
-  QString prefix = ""; // prefix, left blank if it's a preanim
+  bool is_preanim;            // equivalent to the old play_once, if true we don't want
+                              // to loop this
+  QString prefix = "";        // prefix, left blank if it's a preanim
 
   void load_image(QString p_filename, QString p_charname, int p_duration, bool p_is_preanim);
   void play(); // overloaded so we can play effects
@@ -224,28 +226,32 @@ signals:
   void play_sfx(QString sfx);
 };
 
-class SplashLayer : public AOLayer {
+class SplashLayer : public AOLayer
+{
   Q_OBJECT
 public:
   SplashLayer(QWidget *p_parent, AOApplication *p_ao_app);
   void load_image(QString p_filename, QString p_charname, QString p_miscname);
 };
 
-class EffectLayer : public AOLayer {
+class EffectLayer : public AOLayer
+{
   Q_OBJECT
 public:
   EffectLayer(QWidget *p_parent, AOApplication *p_ao_app);
   void load_image(QString p_filename, bool p_looping);
 };
 
-class InterfaceLayer : public AOLayer {
+class InterfaceLayer : public AOLayer
+{
   Q_OBJECT
 public:
   InterfaceLayer(QWidget *p_parent, AOApplication *p_ao_app);
   void load_image(QString p_filename, QString p_miscname);
 };
 
-class StickerLayer : public AOLayer {
+class StickerLayer : public AOLayer
+{
   Q_OBJECT
 public:
   StickerLayer(QWidget *p_parent, AOApplication *p_ao_app);

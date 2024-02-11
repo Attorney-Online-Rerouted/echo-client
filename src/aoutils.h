@@ -10,6 +10,6 @@ namespace AOUtils
  * @param QSettings object reference of the old effects.ini
  */
 void migrateEffects(QSettings &p_fileName);
-};
+}; // namespace AOUtils
 
 #endif // AOUTILS_H

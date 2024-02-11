@@ -10,8 +10,7 @@ chatlogpiece::chatlogpiece()
   datetime = QDateTime::currentDateTimeUtc();
 }
 
-chatlogpiece::chatlogpiece(QString p_name, QString p_showname,
-                           QString p_message, QString p_action, int p_color, bool p_selfname)
+chatlogpiece::chatlogpiece(QString p_name, QString p_showname, QString p_message, QString p_action, int p_color, bool p_selfname)
 {
   name = p_name;
   showname = p_showname;
@@ -22,9 +21,7 @@ chatlogpiece::chatlogpiece(QString p_name, QString p_showname,
   datetime = QDateTime::currentDateTimeUtc();
 }
 
-chatlogpiece::chatlogpiece(QString p_name, QString p_showname,
-                           QString p_message, QString p_action, int p_color, bool p_selfname,
-                           QDateTime p_datetime)
+chatlogpiece::chatlogpiece(QString p_name, QString p_showname, QString p_message, QString p_action, int p_color, bool p_selfname, QDateTime p_datetime)
 {
   name = p_name;
   showname = p_showname;
@@ -49,7 +46,9 @@ QString chatlogpiece::get_full()
     full.append(")");
   }
   if (!get_action().isEmpty())
+  {
     full.append(" " + get_action());
+  }
   full.append(": ");
   full.append(get_message());
 

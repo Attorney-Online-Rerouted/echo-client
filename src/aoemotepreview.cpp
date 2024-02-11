@@ -1,6 +1,7 @@
 #include "aoemotepreview.h"
 
-AOEmotePreview::AOEmotePreview(QWidget *parent, AOApplication *p_ao_app) : QWidget(parent)
+AOEmotePreview::AOEmotePreview(QWidget *parent, AOApplication *p_ao_app)
+    : QWidget(parent)
 {
   ao_app = p_ao_app;
 

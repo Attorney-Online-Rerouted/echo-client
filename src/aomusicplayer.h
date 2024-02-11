@@ -3,12 +3,13 @@
 #include "aoapplication.h"
 
 #include <QDebug>
-#include <QWidget>
-#include <string.h>
 #include <QFuture>
 #include <QFutureWatcher>
+#include <QWidget>
+#include <string.h>
 
-class AOMusicPlayer {
+class AOMusicPlayer
+{
 public:
   AOMusicPlayer(QWidget *parent, AOApplication *p_ao_app);
   virtual ~AOMusicPlayer();
@@ -21,8 +22,7 @@ public:
   QFutureWatcher<QString> music_watcher;
 
 public slots:
-  QString play(QString p_song, int channel = 0, bool loop = false,
-            int effect_flags = 0);
+  QString play(QString p_song, int channel = 0, bool loop = false, int effect_flags = 0);
   void stop(int channel = 0);
 
 private:

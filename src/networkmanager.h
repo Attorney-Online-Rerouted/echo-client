@@ -6,26 +6,29 @@
 
 #include <QDnsLookup>
 #include <QNetworkAccessManager>
-#include <QtWebSockets/QWebSocket>
 #include <QTime>
 #include <QTimer>
+#include <QtWebSockets/QWebSocket>
 
 #include <cstring>
 
-enum MSDocumentType {
+enum MSDocumentType
+{
   PrivacyPolicy,
   Motd,
   ClientVersion
 };
 
-class NetworkManager : public QObject {
+class NetworkManager : public QObject
+{
   Q_OBJECT
 
 private:
   AOApplication *ao_app;
   QNetworkAccessManager *http;
 
-  union {
+  union
+  {
     QWebSocket *ws;
     QTcpSocket *tcp;
   } server_socket;
@@ -58,19 +61,15 @@ public slots:
   void get_server_list();
   void ship_server_packet(QString p_packet);
   void join_to_server();
-  void handle_server_packet(const QString& p_data);
+  void handle_server_packet(const QString &p_data);
 
-  void request_document(MSDocumentType document_type,
-                        const std::function<void(QString)> &cb);
+  void request_document(MSDocumentType document_type, const std::function<void(QString)> &cb);
   void send_heartbeat();
 private slots:
   void ms_request_finished(QNetworkReply *reply);
 
 private:
-  QString get_user_agent() const {
-    return QStringLiteral("AttorneyOnline/%1 (Desktop)")
-        .arg(ao_app->get_version_string());
-  }
+  QString get_user_agent() const { return QStringLiteral("AttorneyOnline/%1 (Desktop)").arg(ao_app->get_version_string()); }
 };
 
 #endif // NETWORKMANAGER_H

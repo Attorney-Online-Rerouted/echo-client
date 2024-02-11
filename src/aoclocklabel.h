@@ -1,13 +1,14 @@
 #ifndef AOCLOCKLABEL_H
 #define AOCLOCKLABEL_H
 
-#include <QLabel>
 #include <QBasicTimer>
-#include <QTimerEvent>
 #include <QDateTime>
 #include <QDebug>
+#include <QLabel>
+#include <QTimerEvent>
 
-class AOClockLabel : public QLabel {
+class AOClockLabel : public QLabel
+{
   Q_OBJECT
 
 public:
@@ -24,8 +25,8 @@ protected:
   void timerEvent(QTimerEvent *event) override;
 
 private:
-    QBasicTimer timer;
-    QDateTime target_time;
+  QBasicTimer timer;
+  QDateTime target_time;
 };
 
 #endif // AOCLOCKLABEL_H

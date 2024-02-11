@@ -1,12 +1,12 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
-
 #include <QCoreApplication>
 #include <QSettings>
 #include <datatypes.h>
 
-class Options {
+class Options
+{
 private:
   /**
    * @brief QSettings object for config.ini
@@ -18,7 +18,6 @@ private:
    */
   QSettings favorite;
 
-
   void migrateCallwords();
 
   /**
@@ -29,8 +28,8 @@ private:
   QString m_server_subtheme;
 
 public:
-  Options(Options const &) = delete;
-  void operator=(Options const &) = delete;
+  Options(const Options &) = delete;
+  void operator=(const Options &) = delete;
 
   static Options &getInstance()
   {

@@ -3,11 +3,13 @@
 QString AOPacket::to_string(bool encoded)
 {
   QStringList contents = m_contents;
-  if (encoded) {
+  if (encoded)
+  {
     escape(contents);
   }
   // Our packet is just the header by itself
-  if (contents.isEmpty()) {
+  if (contents.isEmpty())
+  {
     return m_header + "#%";
   }
   return m_header + "#" + contents.join("#") + "#%";
@@ -25,18 +27,10 @@ void AOPacket::net_decode()
 
 void AOPacket::escape(QStringList &contents)
 {
-  contents.replaceInStrings("#", "<num>")
-    .replaceInStrings("%", "<percent>")
-    .replaceInStrings("$", "<dollar>")
-    .replaceInStrings("&", "<and>");
-
+  contents.replaceInStrings("#", "<num>").replaceInStrings("%", "<percent>").replaceInStrings("$", "<dollar>").replaceInStrings("&", "<and>");
 }
 
 void AOPacket::unescape(QStringList &contents)
 {
-  contents.replaceInStrings("<num>", "#")
-    .replaceInStrings("<percent>", "%")
-    .replaceInStrings("<dollar>", "$")
-    .replaceInStrings("<and>", "&");
-
+  contents.replaceInStrings("<num>", "#").replaceInStrings("<percent>", "%").replaceInStrings("<dollar>", "$").replaceInStrings("<and>", "&");
 }

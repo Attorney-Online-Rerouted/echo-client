@@ -1,11 +1,11 @@
 #ifndef AOAPPLICATION_H
 #define AOAPPLICATION_H
 
-#include "widgets/aooptionsdialog.h"
 #include "aopacket.h"
 #include "datatypes.h"
 #include "demoserver.h"
 #include "discord_rich_presence.h"
+#include "widgets/aooptionsdialog.h"
 
 #include "bass.h"
 
@@ -35,18 +35,17 @@ class Lobby;
 class Courtroom;
 class Options;
 
-class VPath : QString {
+class VPath : QString
+{
   using QString::QString;
 
 public:
-  explicit VPath(const QString &str) : QString(str) {}
-  inline QString const &toQString() const { return *this; }
-  inline bool operator==(const VPath &str) const {
-    return this->toQString() == str.toQString();
-  }
-  inline VPath operator+(const VPath &str) const {
-    return VPath(this->toQString() + str.toQString());
-  }
+  explicit VPath(const QString &str)
+      : QString(str)
+  {}
+  inline const QString &toQString() const { return *this; }
+  inline bool operator==(const VPath &str) const { return this->toQString() == str.toQString(); }
+  inline VPath operator+(const VPath &str) const { return VPath(this->toQString() + str.toQString()); }
 };
 
 inline uint qHash(const VPath &key, uint seed = qGlobalQHashSeed())
@@ -54,7 +53,8 @@ inline uint qHash(const VPath &key, uint seed = qGlobalQHashSeed())
   return qHash(key.toQString(), seed);
 }
 
-class AOApplication : public QApplication {
+class AOApplication : public QApplication
+{
   Q_OBJECT
 
 public:
@@ -141,7 +141,7 @@ public:
   QString get_current_char();
 
   // implementation in path_functions.cpp
-  VPath get_theme_path(QString p_file, QString p_theme="");
+  VPath get_theme_path(QString p_file, QString p_theme = "");
   VPath get_character_path(QString p_char, QString p_file);
   VPath get_misc_path(QString p_misc, QString p_file);
   VPath get_sounds_path(QString p_file);
@@ -149,17 +149,17 @@ public:
   VPath get_background_path(QString p_file);
   VPath get_default_background_path(QString p_file);
   VPath get_evidence_path(QString p_file);
-  QVector<VPath> get_asset_paths(QString p_element, QString p_theme="", QString p_subtheme="", QString p_default_theme="", QString p_misc="", QString p_character="", QString p_placeholder="");
+  QVector<VPath> get_asset_paths(QString p_element, QString p_theme = "", QString p_subtheme = "", QString p_default_theme = "", QString p_misc = "", QString p_character = "", QString p_placeholder = "");
   QString get_asset_path(QVector<VPath> pathlist);
-  QString get_image_path(QVector<VPath> pathlist, bool static_image=false);
+  QString get_image_path(QVector<VPath> pathlist, bool static_image = false);
   QString get_sfx_path(QVector<VPath> pathlist);
-  QString get_config_value(QString p_identifier, QString p_config, QString p_theme="", QString p_subtheme="", QString p_default_theme="", QString p_misc="");
-  QString get_asset(QString p_element, QString p_theme="", QString p_subtheme="", QString p_default_theme="", QString p_misc="", QString p_character="", QString p_placeholder="");
-  QString get_image(QString p_element, QString p_theme="", QString p_subtheme="", QString p_default_theme="", QString p_misc="", QString p_character="", QString p_placeholder="", bool static_image=false);
-  QString get_sfx(QString p_sfx, QString p_misc="", QString p_character="");
-  QString get_pos_path(const QString& pos, bool desk = false);
+  QString get_config_value(QString p_identifier, QString p_config, QString p_theme = "", QString p_subtheme = "", QString p_default_theme = "", QString p_misc = "");
+  QString get_asset(QString p_element, QString p_theme = "", QString p_subtheme = "", QString p_default_theme = "", QString p_misc = "", QString p_character = "", QString p_placeholder = "");
+  QString get_image(QString p_element, QString p_theme = "", QString p_subtheme = "", QString p_default_theme = "", QString p_misc = "", QString p_character = "", QString p_placeholder = "", bool static_image = false);
+  QString get_sfx(QString p_sfx, QString p_misc = "", QString p_character = "");
+  QString get_pos_path(const QString &pos, bool desk = false);
   QString get_case_sensitive_path(QString p_file);
-  QString get_real_path(const VPath &vpath, const QStringList &suffixes={""});
+  QString get_real_path(const VPath &vpath, const QStringList &suffixes = {""});
   void invalidate_lookup_cache();
 
   ////// Functions for reading and writing files //////
@@ -204,12 +204,10 @@ public:
   QPoint get_button_spacing(QString p_identifier, QString p_file);
 
   // Returns the dimensions of widget with specified identifier from p_file
-  pos_size_type get_element_dimensions(QString p_identifier, QString p_file,
-                                       QString p_misc = "");
+  pos_size_type get_element_dimensions(QString p_identifier, QString p_file, QString p_misc = "");
 
   // Returns the value to you
-  QString get_design_element(QString p_identifier, QString p_file,
-                             QString p_misc = "");
+  QString get_design_element(QString p_identifier, QString p_file, QString p_misc = "");
 
   // Returns the value of font_size with p_identifier from p_file
   int get_font_size(QString p_identifier, QString p_file);
@@ -228,25 +226,23 @@ public:
   QString get_penalty_value(QString p_identifier);
 
   // Returns the sfx with p_identifier from courtroom_sounds.ini in the current theme path
-  QString get_court_sfx(QString p_identifier, QString p_misc="");
+  QString get_court_sfx(QString p_identifier, QString p_misc = "");
 
   // Figure out if we can opus this or if we should fall back to wav
   QString get_sfx_suffix(VPath sound_to_check);
 
   // Can we use APNG for this? If not, WEBP? If not, GIF? If not, fall back to
   // PNG.
-  QString get_image_suffix(VPath path_to_check, bool static_image=false);
+  QString get_image_suffix(VPath path_to_check, bool static_image = false);
 
   // Returns the value of p_search_line within target_tag and terminator_tag
-  QString read_char_ini(QString p_char, QString p_search_line,
-                        QString target_tag);
+  QString read_char_ini(QString p_char, QString p_search_line, QString target_tag);
 
   // Returns a QStringList of all key=value definitions on a given tag.
   QStringList read_ini_tags(VPath p_file, QString target_tag = "");
 
   // Sets the char.ini p_search_line key under tag target_tag to value.
-  void set_char_ini(QString p_char, QString value, QString p_search_line,
-                    QString target_tag);
+  void set_char_ini(QString p_char, QString value, QString p_search_line, QString target_tag);
 
   // Returns the text between target_tag and terminator_tag in p_file
   QString get_stylesheet(QString p_file);
@@ -353,7 +349,7 @@ public:
   // Currently defined subtheme
   QString subtheme;
 
-  //Default is always default.
+  // Default is always default.
   const QString default_theme = "default";
 
   // The file name of the log file in base/logs.
@@ -371,12 +367,11 @@ public:
 
   void initBASS();
   static void load_bass_plugins();
-  static void CALLBACK BASSreset(HSTREAM handle, DWORD channel, DWORD data,
-                                 void *user);
+  static void CALLBACK BASSreset(HSTREAM handle, DWORD channel, DWORD data, void *user);
   static void doBASSreset();
 
   QElapsedTimer demo_timer;
-  DemoServer* demo_server = nullptr;
+  DemoServer *demo_server = nullptr;
 
 private:
   const int RELEASE = 2;
@@ -393,8 +388,7 @@ public slots:
   void loading_cancelled();
 
 signals:
-  void qt_log_message(QtMsgType type, const QMessageLogContext &context,
-                      const QString &msg);
+  void qt_log_message(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 };
 
 #endif // AOAPPLICATION_H

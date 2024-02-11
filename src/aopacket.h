@@ -5,10 +5,16 @@
 #include <QString>
 #include <QStringList>
 
-class AOPacket {
+class AOPacket
+{
 public:
-  AOPacket(QString header) : m_header(header){}
-  AOPacket(QString header, QStringList p_contents) : m_header(header), m_contents(p_contents){}
+  AOPacket(QString header)
+      : m_header(header)
+  {}
+  AOPacket(QString header, QStringList p_contents)
+      : m_header(header)
+      , m_contents(p_contents)
+  {}
 
   QString get_header() { return m_header; }
   QStringList &get_contents() { return m_contents; }
@@ -19,8 +25,8 @@ public:
 
   static void escape(QStringList &contents);
   static void unescape(QStringList &contents);
-private:
 
+private:
   QString m_header;
   QStringList m_contents;
 };

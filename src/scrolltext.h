@@ -7,7 +7,8 @@
 #include <QTimer>
 #include <QWidget>
 
-class ScrollText : public QWidget {
+class ScrollText : public QWidget
+{
   Q_OBJECT
   Q_PROPERTY(QString text READ text WRITE setText)
   Q_PROPERTY(QString separator READ separator WRITE setSeparator)

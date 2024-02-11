@@ -7,24 +7,24 @@
 #include "aocharbutton.h"
 #include "aoclocklabel.h"
 #include "aoemotebutton.h"
+#include "aoemotepreview.h"
 #include "aoevidencebutton.h"
 #include "aoevidencedisplay.h"
 #include "aoimage.h"
 #include "aolayer.h"
 #include "aomusicplayer.h"
-#include "widgets/aooptionsdialog.h"
 #include "aopacket.h"
 #include "aosfxplayer.h"
 #include "aotextarea.h"
 #include "chatlogpiece.h"
 #include "datatypes.h"
 #include "debug_functions.h"
+#include "eventfilters.h"
 #include "file_functions.h"
 #include "hardware_functions.h"
 #include "lobby.h"
 #include "scrolltext.h"
-#include "eventfilters.h"
-#include "aoemotepreview.h"
+#include "widgets/aooptionsdialog.h"
 
 #include <QCheckBox>
 #include <QCloseEvent>
@@ -35,12 +35,12 @@
 #include <QMainWindow>
 #include <QMap>
 #include <QPlainTextEdit>
+#include <QQueue>
 #include <QSlider>
 #include <QSpinBox>
 #include <QTextBrowser>
 #include <QTreeWidget>
 #include <QVector>
-#include <QQueue>
 
 #include <QBrush>
 #include <QDebug>
@@ -55,11 +55,11 @@
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 #include <QRandomGenerator> //added in Qt 5.10
 #endif
+#include <QElapsedTimer>
 #include <QRegularExpression>
 #include <QScrollBar>
 #include <QTextBoundaryFinder>
 #include <QTextCharFormat>
-#include <QElapsedTimer>
 
 #include <QFuture>
 
@@ -68,7 +68,8 @@
 
 class AOApplication;
 
-class Courtroom : public QMainWindow {
+class Courtroom : public QMainWindow
+{
   Q_OBJECT
 public:
   explicit Courtroom(AOApplication *p_ao_app);
@@ -85,7 +86,8 @@ public:
 
   void fix_last_area()
   {
-    if (area_list.size() > 0) {
+    if (area_list.size() > 0)
+    {
       QString malplaced = area_list.last();
       area_list.removeLast();
       append_music(malplaced);
@@ -100,7 +102,8 @@ public:
     arup_locks.append(locked);
   }
 
-  void arup_clear() {
+  void arup_clear()
+  {
     arup_players.clear();
     arup_statuses.clear();
     arup_cms.clear();
@@ -109,21 +112,33 @@ public:
 
   void arup_modify(int type, int place, QString value)
   {
-    if (type == 0) {
+    if (type == 0)
+    {
       if (arup_players.size() > place)
+      {
         arup_players[place] = value.toInt();
+      }
     }
-    else if (type == 1) {
+    else if (type == 1)
+    {
       if (arup_statuses.size() > place)
+      {
         arup_statuses[place] = value;
+      }
     }
-    else if (type == 2) {
+    else if (type == 2)
+    {
       if (arup_cms.size() > place)
+      {
         arup_cms[place] = value;
+      }
     }
-    else if (type == 3) {
+    else if (type == 3)
+    {
       if (arup_locks.size() > place)
+      {
         arup_locks[place] = value;
+      }
     }
   }
 
@@ -136,16 +151,13 @@ public:
   void set_widgets();
 
   // sets font size based on theme ini files
-  void set_font(QWidget *widget, QString class_name, QString p_identifier,
-                QString p_char = "", QString font_name = "",
-                int f_pointsize = 0);
+  void set_font(QWidget *widget, QString class_name, QString p_identifier, QString p_char = "", QString font_name = "", int f_pointsize = 0);
 
   // Get the properly constructed font
   QFont get_qfont(QString font_name, int f_pointsize, bool antialias = true);
 
   // actual operation of setting the font on a widget
-  void set_qfont(QWidget *widget, QString class_name, QFont font,
-                 QColor f_color = Qt::black, bool bold = false);
+  void set_qfont(QWidget *widget, QString class_name, QFont font, QColor f_color = Qt::black, bool bold = false);
 
   // helper function that calls above function on the relevant widgets
   void set_fonts(QString p_char = "");
@@ -159,7 +171,7 @@ public:
   void set_window_title(QString p_title);
 
   // reads theme and sets size and pos based on the identifier (using p_misc if provided)
-  void set_size_and_pos(QWidget *p_widget, QString p_identifier, QString p_misc="");
+  void set_size_and_pos(QWidget *p_widget, QString p_identifier, QString p_misc = "");
 
   // reads theme inis and returns the size and pos as defined by it
   QPoint get_theme_pos(QString p_identifier);
@@ -194,7 +206,7 @@ public:
   void set_scene(bool show_desk, QString f_side);
 
   // sets ui_vp_player_char according to SELF_OFFSET, only a function bc it's used with desk_mod 4 and 5
-  void set_self_offset(const QString& p_list);
+  void set_self_offset(const QString &p_list);
 
   // takes in serverD-formatted IP list as prints a converted version to server
   // OOC admittedly poorly named
@@ -225,13 +237,11 @@ public:
   void list_areas();
 
   // Debug log (formerly master server chat log)
-  void debug_message_handler(QtMsgType type, const QMessageLogContext &context,
-                             const QString &msg);
+  void debug_message_handler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
   void append_debug_message(QString f_message);
 
   // OOC chat log
-  void append_server_chatmessage(QString p_name, QString p_message,
-                                 QString p_color);
+  void append_server_chatmessage(QString p_name, QString p_message, QString p_color);
 
   // Add the message packet to the stack
   void chatmessage_enqueue(QStringList p_contents);
@@ -242,14 +252,15 @@ public:
   // Skip the current queue, adding all the queue messages to the logs if desynchronized logs are disabled
   void skip_chatmessage_queue();
 
-  enum LogMode {
+  enum LogMode
+  {
     IO_ONLY,
     DISPLAY_ONLY,
     DISPLAY_AND_IO,
     QUEUED,
   };
   // Log the message contents and information such as evidence presenting etc. into the log file, the IC log, or both.
-  void log_chatmessage(QString f_message, int f_char_id, QString f_showname = "", QString f_char = "", QString f_objection_mod = "", int f_evi_id = 0, int f_color = 0, LogMode f_log_mode=IO_ONLY, bool sender = false);
+  void log_chatmessage(QString f_message, int f_char_id, QString f_showname = "", QString f_char = "", QString f_objection_mod = "", int f_evi_id = 0, int f_color = 0, LogMode f_log_mode = IO_ONLY, bool sender = false);
 
   // Log the message contents and information such as evidence presenting etc. into the IC logs
   void handle_callwords();
@@ -282,19 +293,15 @@ public:
 
   // This function filters out the common CC inline text trickery, for appending
   // to the IC chatlog.
-  QString filter_ic_text(QString p_text, bool colorize = false, int pos = -1,
-                         int default_color = 0);
+  QString filter_ic_text(QString p_text, bool colorize = false, int pos = -1, int default_color = 0);
 
-  void log_ic_text(QString p_name, QString p_showname, QString p_message,
-                   QString p_action = "", int p_color = 0, bool p_selfname = false);
+  void log_ic_text(QString p_name, QString p_showname, QString p_message, QString p_action = "", int p_color = 0, bool p_selfname = false);
 
   // adds text to the IC chatlog. p_name first as bold then p_text then a newlin
   // this function keeps the chatlog scrolled to the top unless there's text
   // selected
   // or the user isn't already scrolled to the top
-  void append_ic_text(QString p_text, QString p_name = "", QString action = "",
-                      int color = 0, bool selfname = false, QDateTime timestamp = QDateTime::currentDateTime(),
-                      bool ghost = false);
+  void append_ic_text(QString p_text, QString p_name = "", QString action = "", int color = 0, bool selfname = false, QDateTime timestamp = QDateTime::currentDateTime(), bool ghost = false);
 
   // clear sent messages that appear on the IC log but haven't been delivered
   // yet to other players
@@ -330,14 +337,15 @@ public:
 
   qint64 pong();
   // Truncates text so it fits within theme-specified boundaries and sets the tooltip to the full string
-  void truncate_label_text(QWidget* p_widget, QString p_identifier);
+  void truncate_label_text(QWidget *p_widget, QString p_identifier);
 
   void on_authentication_state_received(int p_state);
 
-  enum JudgeState {
-      POS_DEPENDENT = -1,
-      HIDE_CONTROLS =  0,
-      SHOW_CONTROLS =  1
+  enum JudgeState
+  {
+    POS_DEPENDENT = -1,
+    HIDE_CONTROLS = 0,
+    SHOW_CONTROLS = 1
   };
 
   JudgeState get_judge_state() { return judge_state; }
@@ -345,6 +353,7 @@ public:
   void set_judge_buttons() { show_judge_controls(ao_app->get_pos_is_judge(current_side)); }
 
   ~Courtroom();
+
 private:
   AOApplication *ao_app;
 
@@ -362,8 +371,7 @@ private:
 
   int maximumMessages = 0;
 
-  QParallelAnimationGroup *screenshake_animation_group =
-      new QParallelAnimationGroup;
+  QParallelAnimationGroup *screenshake_animation_group = new QParallelAnimationGroup;
 
   bool next_character_is_not_special = false; // If true, write the
                                               // next character as it is.
@@ -526,7 +534,8 @@ private:
 
   int objection_state = 0;
   QString objection_custom = "";
-  struct CustomObjection {
+  struct CustomObjection
+  {
     QString name;
     QString filename;
   };
@@ -790,7 +799,6 @@ private:
   AOButton *ui_evidence_load;
   QPlainTextEdit *ui_evidence_description;
 
-
   AOImage *ui_char_select_background;
 
   // pretty list of characters
@@ -841,8 +849,7 @@ public slots:
   void preanim_done();
   void do_screenshake();
   void do_flash();
-  void do_effect(QString fx_path, QString fx_sound, QString p_char,
-                 QString p_folder);
+  void do_effect(QString fx_path, QString fx_sound, QString p_char, QString p_folder);
   void play_char_sfx(QString sfx_name);
 
   void mod_called(QString p_ip);

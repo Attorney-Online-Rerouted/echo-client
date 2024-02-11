@@ -5,16 +5,16 @@
 #include "aoimage.h"
 
 #include <QDebug>
-#include <QPushButton>
 #include <QEnterEvent>
+#include <QPushButton>
 #include <QString>
 
-class AOEvidenceButton : public QPushButton {
+class AOEvidenceButton : public QPushButton
+{
   Q_OBJECT
 
 public:
-  AOEvidenceButton(QWidget *p_parent, AOApplication *p_ao_app, int p_x, int p_y,
-                   int p_w, int p_h);
+  AOEvidenceButton(QWidget *p_parent, AOApplication *p_ao_app, int p_x, int p_y, int p_w, int p_h);
 
   void set_image(QString p_image);
   void set_theme_image(QString p_image);

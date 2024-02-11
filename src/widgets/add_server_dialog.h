@@ -14,7 +14,8 @@ class QPlainTextEdit;
 class QPushButton;
 class QSpinBox;
 
-class AddServerDialog : public AttorneyOnline::UI::FavoriteServerDialog {
+class AddServerDialog : public AttorneyOnline::UI::FavoriteServerDialog
+{
   Q_OBJECT
 public:
   AddServerDialog();

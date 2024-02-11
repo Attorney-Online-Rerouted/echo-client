@@ -9,7 +9,8 @@
 #include <QLabel>
 #include <QPushButton>
 
-class AOEvidenceDisplay : public QLabel {
+class AOEvidenceDisplay : public QLabel
+{
   Q_OBJECT
 
 public:

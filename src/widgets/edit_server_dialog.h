@@ -14,11 +14,12 @@ class QSpinBox;
 class QPlainTextEdit;
 class QDialogButtonBox;
 
-class EditServerDialog : public AttorneyOnline::UI::FavoriteServerDialog {
+class EditServerDialog : public AttorneyOnline::UI::FavoriteServerDialog
+{
   Q_OBJECT
 public:
-    EditServerDialog(int index);
-    ~EditServerDialog() = default;
+  EditServerDialog(int index);
+  ~EditServerDialog() = default;
 
 private:
   QWidget *ui_widget;

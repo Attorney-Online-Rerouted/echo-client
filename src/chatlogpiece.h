@@ -1,18 +1,17 @@
 #ifndef CHATLOGPIECE_H
 #define CHATLOGPIECE_H
 
-#include <QtWidgets/QApplication>
 #include <QDateTime>
 #include <QString>
+#include <QtWidgets/QApplication>
 
-class chatlogpiece {
-    Q_DECLARE_TR_FUNCTIONS(chatlogpiece)
+class chatlogpiece
+{
+  Q_DECLARE_TR_FUNCTIONS(chatlogpiece)
 public:
   chatlogpiece();
-  chatlogpiece(QString p_name, QString p_showname, QString p_message,
-               QString p_action,int color, bool selfname);
-  chatlogpiece(QString p_name, QString p_showname, QString p_message,
-               QString p_action, int color, bool selfname, QDateTime p_datetime);
+  chatlogpiece(QString p_name, QString p_showname, QString p_message, QString p_action, int color, bool selfname);
+  chatlogpiece(QString p_name, QString p_showname, QString p_message, QString p_action, int color, bool selfname, QDateTime p_datetime);
 
   QString get_name() { return name; };
   QString get_showname() { return showname; };

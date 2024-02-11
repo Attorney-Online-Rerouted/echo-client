@@ -8,9 +8,9 @@ class QTextBrowser;
 class QTreeWidget;
 class QTreeWidgetItem;
 
-#include <QMainWindow>
-#include "networkmanager.h"
 #include "file_functions.h"
+#include "networkmanager.h"
+#include <QMainWindow>
 
 #ifdef ANDROID
 #include <QtAndroidExtras/QtAndroid>
@@ -18,7 +18,8 @@ class QTreeWidgetItem;
 
 class AOApplication;
 
-class Lobby : public QMainWindow {
+class Lobby : public QMainWindow
+{
   Q_OBJECT
 public:
   Lobby(AOApplication *p_ao_app, NetworkManager *p_net_man = nullptr);
@@ -44,7 +45,12 @@ private:
 
   int last_index = -1;
 
-  enum TabPage { SERVER, FAVORITES, DEMOS };
+  enum TabPage
+  {
+    SERVER,
+    FAVORITES,
+    DEMOS
+  };
 
   // UI-file Lobby
 

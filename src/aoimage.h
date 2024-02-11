@@ -9,7 +9,8 @@
 #include <QLabel>
 #include <QMovie>
 
-class AOImage : public QLabel {
+class AOImage : public QLabel
+{
 public:
   AOImage(QWidget *parent, AOApplication *p_ao_app, bool make_static = false);
   ~AOImage();

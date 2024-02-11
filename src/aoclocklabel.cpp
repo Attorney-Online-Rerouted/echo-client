@@ -1,6 +1,8 @@
 #include "aoclocklabel.h"
 
-AOClockLabel::AOClockLabel(QWidget *parent) : QLabel(parent) {}
+AOClockLabel::AOClockLabel(QWidget *parent)
+    : QLabel(parent)
+{}
 
 void AOClockLabel::start()
 {
@@ -56,7 +58,8 @@ bool AOClockLabel::active()
 
 void AOClockLabel::timerEvent(QTimerEvent *event)
 {
-  if (event->timerId() == timer.timerId()) {
+  if (event->timerId() == timer.timerId())
+  {
     if (QDateTime::currentDateTime() >= target_time)
     {
       this->stop();
@@ -66,7 +69,9 @@ void AOClockLabel::timerEvent(QTimerEvent *event)
     QTime timeleft = QTime(0, 0).addMSecs(ms_left % (1000 * 3600 * 24));
     QString timestring = timeleft.toString("hh:mm:ss.zzz");
     this->setText(timestring);
-  } else {
+  }
+  else
+  {
     QWidget::timerEvent(event);
   }
 }

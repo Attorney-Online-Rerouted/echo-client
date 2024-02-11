@@ -2,7 +2,6 @@
 
 #include "datatypes.h"
 #include "file_functions.h"
-#include "misc_functions.h"
 
 AOEvidenceDisplay::AOEvidenceDisplay(QWidget *p_parent, AOApplication *p_ao_app)
     : QLabel(p_parent)
@@ -18,8 +17,7 @@ AOEvidenceDisplay::AOEvidenceDisplay(QWidget *p_parent, AOApplication *p_ao_app)
   connect(evidence_icon, &QPushButton::clicked, this, &AOEvidenceDisplay::icon_clicked);
 }
 
-void AOEvidenceDisplay::show_evidence(int p_index, QString p_evidence_image,
-                                      bool is_left_side, int p_volume)
+void AOEvidenceDisplay::show_evidence(int p_index, QString p_evidence_image, bool is_left_side, int p_volume)
 {
   this->reset();
 
@@ -30,21 +28,21 @@ void AOEvidenceDisplay::show_evidence(int p_index, QString p_evidence_image,
   QString gif_name;
   QString icon_identifier;
 
-  if (is_left_side) {
+  if (is_left_side)
+  {
     icon_identifier = "left_evidence_icon";
     gif_name = "evidence_appear_left";
   }
-  else {
+  else
+  {
     icon_identifier = "right_evidence_icon";
     gif_name = "evidence_appear_right";
   }
 
-  QString f_evidence_path = ao_app->get_real_path(
-        ao_app->get_evidence_path(p_evidence_image));
+  QString f_evidence_path = ao_app->get_real_path(ao_app->get_evidence_path(p_evidence_image));
   QPixmap f_pixmap(f_evidence_path);
 
-  pos_size_type icon_dimensions =
-      ao_app->get_element_dimensions(icon_identifier, "courtroom_design.ini");
+  pos_size_type icon_dimensions = ao_app->get_element_dimensions(icon_identifier, "courtroom_design.ini");
 
   f_pixmap = f_pixmap.scaled(icon_dimensions.width, icon_dimensions.height);
   QIcon f_icon(f_pixmap);
@@ -68,10 +66,15 @@ void AOEvidenceDisplay::reset()
   this->clear();
 }
 
-void AOEvidenceDisplay::show_done() { evidence_icon->show(); }
+void AOEvidenceDisplay::show_done()
+{
+  evidence_icon->show();
+}
 
-void AOEvidenceDisplay::icon_clicked() {
-  if (last_evidence_index != -1) {
+void AOEvidenceDisplay::icon_clicked()
+{
+  if (last_evidence_index != -1)
+  {
     emit show_evidence_details(last_evidence_index - 1); // i dont know why i have to subtract 1 here
   }
 }

@@ -2,8 +2,7 @@
 
 #include "file_functions.h"
 
-AOCharButton::AOCharButton(QWidget *parent, AOApplication *p_ao_app, int x_pos,
-                           int y_pos, bool is_taken)
+AOCharButton::AOCharButton(QWidget *parent, AOApplication *p_ao_app, int x_pos, int y_pos, bool is_taken)
     : QPushButton(parent)
 {
   m_parent = parent;
@@ -42,35 +41,44 @@ void AOCharButton::reset()
   ui_selector->hide();
 }
 
-void AOCharButton::set_taken(bool is_taken) { taken = is_taken; }
+void AOCharButton::set_taken(bool is_taken)
+{
+  taken = is_taken;
+}
 
 void AOCharButton::apply_taken_image()
 {
-  if (taken) {
+  if (taken)
+  {
     ui_taken->move(0, 0);
     ui_taken->show();
   }
-  else {
+  else
+  {
     ui_taken->hide();
   }
 }
 
-void AOCharButton::set_passworded() { ui_passworded->show(); }
+void AOCharButton::set_passworded()
+{
+  ui_passworded->show();
+}
 
 void AOCharButton::set_image(QString p_character)
 {
-  QString image_path = ao_app->get_image_suffix(
-      ao_app->get_character_path(p_character, "char_icon"));
+  QString image_path = ao_app->get_image_suffix(ao_app->get_character_path(p_character, "char_icon"));
 
   this->setText("");
 
-  if (file_exists(image_path)) {
+  if (file_exists(image_path))
+  {
     this->setStyleSheet("QPushButton { border-image: url(\"" + image_path +
                         "\") 0 0 0 0 stretch stretch; }"
                         "QToolTip { background-image: url(); color: #000000; "
                         "background-color: #ffffff; border: 0px; }");
   }
-  else {
+  else
+  {
     this->setStyleSheet("QPushButton { border-image: url(); }"
                         "QToolTip { background-image: url(); color: #000000; "
                         "background-color: #ffffff; border: 0px; }");

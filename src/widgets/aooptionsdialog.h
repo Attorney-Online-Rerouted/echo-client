@@ -17,25 +17,25 @@ class QTabWidget;
 class QLabel;
 class QAbstractButton;
 
-
-#include <QtWidgets/QDialog>
 #include <QDirIterator>
 #include <QListWidget>
 #include <QTextBrowser>
 #include <QTextStream>
+#include <QtWidgets/QDialog>
 
 class AOApplication;
 
-struct OptionEntry {
+struct OptionEntry
+{
   std::function<void()> load;
   std::function<void()> save;
 };
 
-class AOOptionsDialog : public QDialog {
+class AOOptionsDialog : public QDialog
+{
   Q_OBJECT
 public:
-  explicit AOOptionsDialog(QDialog *parent = nullptr,
-                           AOApplication *p_ao_app = nullptr);
+  explicit AOOptionsDialog(QDialog *parent = nullptr, AOApplication *p_ao_app = nullptr);
 
 private:
   AOApplication *ao_app;
@@ -135,11 +135,11 @@ private:
   template <typename T, typename V>
   void setWidgetData(T *widget, const V &value);
 
-  template <typename T, typename V> V widgetData(T *widget) const;
+  template <typename T, typename V>
+  V widgetData(T *widget) const;
 
   template <typename T, typename V>
-  void registerOption(const QString &widgetName, V (Options::*getter)() const,
-                      void (Options::*setter)(V));
+  void registerOption(const QString &widgetName, V (Options::*getter)() const, void (Options::*setter)(V));
 
 signals:
   void reloadThemeRequest();
@@ -153,7 +153,6 @@ private slots:
   void onReloadThemeClicked();
   void themeChanged(int i);
   void setupUI();
-
 };
 
 #endif // AOOPTIONSDIALOG_H

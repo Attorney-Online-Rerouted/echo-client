@@ -2,8 +2,7 @@
 
 #include "file_functions.h"
 
-AOEvidenceButton::AOEvidenceButton(QWidget *p_parent, AOApplication *p_ao_app,
-                                   int p_x, int p_y, int p_w, int p_h)
+AOEvidenceButton::AOEvidenceButton(QWidget *p_parent, AOApplication *p_ao_app, int p_x, int p_y, int p_w, int p_h)
     : QPushButton(p_parent)
 {
   ao_app = p_ao_app;
@@ -33,21 +32,22 @@ AOEvidenceButton::AOEvidenceButton(QWidget *p_parent, AOApplication *p_ao_app,
 void AOEvidenceButton::set_image(QString p_image)
 {
   QString image_path = ao_app->get_real_path(ao_app->get_evidence_path(p_image));
-  if (file_exists(p_image)) {
+  if (file_exists(p_image))
+  {
     this->setText("");
-    this->setStyleSheet(
-        "QPushButton { border-image: url(\"" + p_image +
-        "\") 0 0 0 0 stretch stretch; }"
-        "QToolTip { color: #000000; background-color: #ffffff; border: 0px; }");
+    this->setStyleSheet("QPushButton { border-image: url(\"" + p_image +
+                        "\") 0 0 0 0 stretch stretch; }"
+                        "QToolTip { color: #000000; background-color: #ffffff; border: 0px; }");
   }
-  else if (file_exists(image_path)) {
+  else if (file_exists(image_path))
+  {
     this->setText("");
-    this->setStyleSheet(
-        "QPushButton { border-image: url(\"" + image_path +
-        "\") 0 0 0 0 stretch stretch; }"
-        "QToolTip { color: #000000; background-color: #ffffff; border: 0px; }");
+    this->setStyleSheet("QPushButton { border-image: url(\"" + image_path +
+                        "\") 0 0 0 0 stretch stretch; }"
+                        "QToolTip { color: #000000; background-color: #ffffff; border: 0px; }");
   }
-  else {
+  else
+  {
     this->setText(p_image);
     this->setStyleSheet("QPushButton { border-image: url(); }"
                         "QToolTip { background-image: url(); color: #000000; "
@@ -57,17 +57,19 @@ void AOEvidenceButton::set_image(QString p_image)
 
 void AOEvidenceButton::set_theme_image(QString p_image)
 {
-  QString theme_image_path = ao_app->get_real_path(
-        ao_app->get_theme_path(p_image));
-  QString default_image_path = ao_app->get_real_path(
-        ao_app->get_theme_path(p_image, ao_app->default_theme));
+  QString theme_image_path = ao_app->get_real_path(ao_app->get_theme_path(p_image));
+  QString default_image_path = ao_app->get_real_path(ao_app->get_theme_path(p_image, ao_app->default_theme));
 
   QString final_image_path;
 
   if (file_exists(theme_image_path))
+  {
     final_image_path = theme_image_path;
+  }
   else
+  {
     final_image_path = default_image_path;
+  }
 
   this->set_image(final_image_path);
 }
@@ -75,12 +77,19 @@ void AOEvidenceButton::set_theme_image(QString p_image)
 void AOEvidenceButton::set_selected(bool p_selected)
 {
   if (p_selected)
+  {
     ui_selected->show();
+  }
   else
+  {
     ui_selected->hide();
+  }
 }
 
-void AOEvidenceButton::on_clicked() { emit evidence_clicked(m_id); }
+void AOEvidenceButton::on_clicked()
+{
+  emit evidence_clicked(m_id);
+}
 
 void AOEvidenceButton::mouseDoubleClickEvent(QMouseEvent *e)
 {

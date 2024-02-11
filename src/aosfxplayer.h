@@ -10,7 +10,8 @@
 #include <QWidget>
 #include <string.h>
 
-class AOSfxPlayer {
+class AOSfxPlayer
+{
 public:
   AOSfxPlayer(QWidget *parent, AOApplication *p_ao_app);
 
@@ -23,6 +24,7 @@ public:
   void set_muted(bool toggle);
   int m_channel = 0;
   int get_volume() { return m_volume * 100; };
+
 private:
   QWidget *m_parent;
   AOApplication *ao_app;

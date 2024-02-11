@@ -2,17 +2,17 @@
 #define AOEMOTEBUTTON_H
 
 #include "aoapplication.h"
-#include <QPainter>
 #include <QDebug>
-#include <QPushButton>
 #include <QLabel>
+#include <QPainter>
+#include <QPushButton>
 
-class AOEmoteButton : public QPushButton {
+class AOEmoteButton : public QPushButton
+{
   Q_OBJECT
 
 public:
-  AOEmoteButton(QWidget *p_parent, AOApplication *p_ao_app, int p_x, int p_y,
-                int p_w, int p_h);
+  AOEmoteButton(QWidget *p_parent, AOApplication *p_ao_app, int p_x, int p_y, int p_w, int p_h);
 
   void set_image(QString p_image, QString p_emote_comment);
   void set_char_image(QString p_char, int p_emote, bool on);

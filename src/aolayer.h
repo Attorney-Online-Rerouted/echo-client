@@ -1,5 +1,4 @@
-#ifndef AOLAYER_H
-#define AOLAYER_H
+#pragma once
 
 #include <QBitmap>
 #include <QDebug>
@@ -257,5 +256,3 @@ public:
   StickerLayer(QWidget *p_parent, AOApplication *p_ao_app);
   void load_image(QString p_charname);
 };
-
-#endif // AOLAYER_H

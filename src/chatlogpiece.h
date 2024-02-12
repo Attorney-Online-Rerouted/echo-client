@@ -1,5 +1,4 @@
-#ifndef CHATLOGPIECE_H
-#define CHATLOGPIECE_H
+#pragma once
 
 #include <QDateTime>
 #include <QString>
@@ -32,5 +31,3 @@ private:
   QDateTime datetime;
   int color;
 };
-
-#endif // CHATLOGPIECE_H

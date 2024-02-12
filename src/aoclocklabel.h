@@ -1,5 +1,4 @@
-#ifndef AOCLOCKLABEL_H
-#define AOCLOCKLABEL_H
+#pragma once
 
 #include <QBasicTimer>
 #include <QDateTime>
@@ -28,5 +27,3 @@ private:
   QBasicTimer timer;
   QDateTime target_time;
 };
-
-#endif // AOCLOCKLABEL_H

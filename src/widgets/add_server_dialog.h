@@ -1,7 +1,6 @@
 #pragma once
 
-#ifndef ADD_SERVER_DIALOG_H
-#define ADD_SERVER_DIALOG_H
+#pragma once
 
 #include "interfaces/server_dialog.h"
 
@@ -41,5 +40,3 @@ private slots:
   void onCancelPressed() override;
   void parseLegacyServerEntry();
 };
-
-#endif // ADD_SERVER_DIALOG_H

@@ -1,5 +1,4 @@
-#ifndef AOSFXPLAYER_H
-#define AOSFXPLAYER_H
+#pragma once
 
 #include "bass.h"
 #include "bassopus.h"
@@ -38,5 +37,3 @@ private:
 
   HSTREAM m_stream_list[5];
 };
-
-#endif // AOSFXPLAYER_H

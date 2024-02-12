@@ -1,5 +1,4 @@
-#ifndef AOEVIDENCEDISPLAY_H
-#define AOEVIDENCEDISPLAY_H
+#pragma once
 
 #include "aoapplication.h"
 #include "aolayer.h"
@@ -34,5 +33,3 @@ private slots:
   void show_done();
   void icon_clicked();
 };
-
-#endif // AOEVIDENCEDISPLAY_H

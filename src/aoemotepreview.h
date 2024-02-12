@@ -1,5 +1,4 @@
-#ifndef AOEMOTEPREVIEW_H
-#define AOEMOTEPREVIEW_H
+#pragma once
 
 #include "aolayer.h"
 #include <QWidget>
@@ -29,5 +28,3 @@ private:
 protected:
   void resizeEvent(QResizeEvent *);
 };
-
-#endif // AOEMOTEPREVIEW_H

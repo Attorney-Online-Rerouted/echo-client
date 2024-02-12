@@ -1,5 +1,4 @@
-#ifndef AOUTILS_H
-#define AOUTILS_H
+#pragma once
 
 #include <QSettings>
 
@@ -11,5 +10,3 @@ namespace AOUtils
  */
 void migrateEffects(QSettings &p_fileName);
 }; // namespace AOUtils
-
-#endif // AOUTILS_H

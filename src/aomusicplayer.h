@@ -1,5 +1,5 @@
-#ifndef AOMUSICPLAYER_H
-#define AOMUSICPLAYER_H
+#pragma once
+
 #include "aoapplication.h"
 
 #include <QDebug>
@@ -49,5 +49,3 @@ private:
    */
   unsigned int loop_end[4] = {0, 0, 0, 0};
 };
-
-#endif // AOMUSICPLAYER_H

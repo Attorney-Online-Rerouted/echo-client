@@ -1,7 +1,6 @@
 #pragma once
 
-#ifndef EDIT_SERVER_DIALOG_H
-#define EDIT_SERVER_DIALOG_H
+#pragma once
 
 #include "interfaces/server_dialog.h"
 
@@ -43,5 +42,3 @@ private slots:
   void onSavePressed() override;
   void onCancelPressed() override;
 };
-
-#endif // EDIT_SERVER_DIALOG_H

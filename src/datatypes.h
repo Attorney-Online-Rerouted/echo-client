@@ -1,5 +1,4 @@
-#ifndef DATATYPES_H
-#define DATATYPES_H
+#pragma once
 
 #include <QMap>
 #include <QString>
@@ -146,5 +145,3 @@ enum MUSIC_EFFECT
   FADE_OUT = 2,
   SYNC_POS = 4
 };
-
-#endif // DATATYPES_H

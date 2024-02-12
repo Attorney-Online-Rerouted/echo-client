@@ -1,5 +1,4 @@
-#ifndef EVENTFILTERS_H
-#define EVENTFILTERS_H
+#pragma once
 
 #include <QEvent>
 #include <QLineEdit>
@@ -33,5 +32,3 @@ protected:
 signals:
   void double_clicked();
 };
-
-#endif // EVENTFILTERS_H

@@ -1,5 +1,4 @@
-#ifndef AOEVIDENCEBUTTON_H
-#define AOEVIDENCEBUTTON_H
+#pragma once
 
 #include "aoapplication.h"
 #include "aoimage.h"
@@ -52,5 +51,3 @@ signals:
 private slots:
   void on_clicked();
 };
-
-#endif // AOEVIDENCEBUTTON_H

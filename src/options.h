@@ -1,5 +1,4 @@
-#ifndef OPTIONS_H
-#define OPTIONS_H
+#pragma once
 
 #include <QCoreApplication>
 #include <QSettings>
@@ -285,5 +284,3 @@ public:
   // Theming Nonesense!
   QString getUIAsset(QString f_asset_name);
 };
-
-#endif // OPTIONS_H

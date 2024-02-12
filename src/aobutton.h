@@ -1,5 +1,4 @@
-#ifndef AOBUTTON_H
-#define AOBUTTON_H
+#pragma once
 
 #include "aoapplication.h"
 
@@ -20,5 +19,3 @@ public:
 
   void set_image(QString p_image, QString p_misc = "");
 };
-
-#endif // AOBUTTON_H

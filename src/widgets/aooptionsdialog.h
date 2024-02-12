@@ -1,5 +1,4 @@
-#ifndef AOOPTIONSDIALOG_H
-#define AOOPTIONSDIALOG_H
+#pragma once
 
 #include "options.h"
 
@@ -154,5 +153,3 @@ private slots:
   void themeChanged(int i);
   void setupUI();
 };
-
-#endif // AOOPTIONSDIALOG_H

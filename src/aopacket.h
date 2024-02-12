@@ -1,5 +1,4 @@
-#ifndef AOPACKET_H
-#define AOPACKET_H
+#pragma once
 
 #include <QDebug>
 #include <QString>
@@ -30,5 +29,3 @@ private:
   QString m_header;
   QStringList m_contents;
 };
-
-#endif // AOPACKET_H

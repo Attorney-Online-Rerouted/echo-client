@@ -1,5 +1,4 @@
-#ifndef AOEMOTEBUTTON_H
-#define AOEMOTEBUTTON_H
+#pragma once
 
 #include "aoapplication.h"
 #include <QDebug>
@@ -34,5 +33,3 @@ signals:
 private slots:
   void on_clicked();
 };
-
-#endif // AOEMOTEBUTTON_H

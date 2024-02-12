@@ -1,5 +1,4 @@
-#ifndef AOBLIPPLAYER_H
-#define AOBLIPPLAYER_H
+#pragma once
 
 #include "bass.h"
 #include "bassopus.h"
@@ -34,5 +33,3 @@ private:
 
   HSTREAM m_stream_list[5];
 };
-
-#endif // AOBLIPPLAYER_H

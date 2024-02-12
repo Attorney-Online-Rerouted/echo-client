@@ -1,5 +1,4 @@
-#ifndef AOAPPLICATION_H
-#define AOAPPLICATION_H
+#pragma once
 
 #include "aopacket.h"
 #include "datatypes.h"
@@ -390,5 +389,3 @@ public slots:
 signals:
   void qt_log_message(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 };
-
-#endif // AOAPPLICATION_H

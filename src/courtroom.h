@@ -1,5 +1,4 @@
-#ifndef COURTROOM_H
-#define COURTROOM_H
+#pragma once
 
 #include "aoapplication.h"
 #include "aoblipplayer.h"
@@ -1025,5 +1024,3 @@ private slots:
   void preview_emote(QString emote);
   void update_emote_preview();
 };
-
-#endif // COURTROOM_H

@@ -1,5 +1,4 @@
-#ifndef SCROLLTEXT_H
-#define SCROLLTEXT_H
+#pragma once
 
 #include <QDebug>
 #include <QPainter>
@@ -44,5 +43,3 @@ private:
 private slots:
   virtual void timer_timeout();
 };
-
-#endif // SCROLLTEXT_H

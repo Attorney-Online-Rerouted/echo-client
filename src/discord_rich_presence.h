@@ -1,5 +1,4 @@
-#ifndef DISCORD_RICH_PRESENCE_H
-#define DISCORD_RICH_PRESENCE_H
+#pragma once
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -38,4 +37,3 @@ public:
 };
 
 } // namespace AttorneyOnline
-#endif // DISCORD_RICH_PRESENCE_H

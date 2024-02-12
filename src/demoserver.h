@@ -1,5 +1,4 @@
-#ifndef DEMOSERVER_H
-#define DEMOSERVER_H
+#pragma once
 
 #include "aopacket.h"
 
@@ -56,5 +55,3 @@ public slots:
 signals:
   void skip_timers(qint64 msecs);
 };
-
-#endif // DEMOSERVER_H

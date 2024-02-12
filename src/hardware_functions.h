@@ -1,8 +1,5 @@
-#ifndef HARDWARE_FUNCTIONS_H
-#define HARDWARE_FUNCTIONS_H
+#pragma once
 
 #include <QString>
 
 QString get_hdid();
-
-#endif // HARDWARE_FUNCTIONS_H

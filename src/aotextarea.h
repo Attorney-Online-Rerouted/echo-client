@@ -1,5 +1,4 @@
-#ifndef AOTEXTAREA_H
-#define AOTEXTAREA_H
+#pragma once
 
 #include <QDebug>
 #include <QRegularExpression>
@@ -21,5 +20,3 @@ private:
 
   void auto_scroll(QTextCursor old_cursor, int scrollbar_value, bool is_scrolled_down);
 };
-
-#endif // AOTEXTAREA_H

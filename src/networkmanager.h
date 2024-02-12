@@ -1,5 +1,4 @@
-#ifndef NETWORKMANAGER_H
-#define NETWORKMANAGER_H
+#pragma once
 
 #include "aoapplication.h"
 #include "aopacket.h"
@@ -71,5 +70,3 @@ private slots:
 private:
   QString get_user_agent() const { return QStringLiteral("AttorneyOnline/%1 (Desktop)").arg(ao_app->get_version_string()); }
 };
-
-#endif // NETWORKMANAGER_H

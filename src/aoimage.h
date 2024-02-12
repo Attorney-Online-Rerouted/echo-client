@@ -1,7 +1,6 @@
 // This class represents a static theme-dependent image
 
-#ifndef AOIMAGE_H
-#define AOIMAGE_H
+#pragma once
 
 #include "aoapplication.h"
 
@@ -28,5 +27,3 @@ public:
   bool set_image(QString p_image, QString p_misc = "");
   void set_size_and_pos(QString identifier);
 };
-
-#endif // AOIMAGE_H

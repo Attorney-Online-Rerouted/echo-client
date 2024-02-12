@@ -1,5 +1,4 @@
-#ifndef DIRECT_CONNECT_DIALOG_H
-#define DIRECT_CONNECT_DIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QRegularExpression>
@@ -43,5 +42,3 @@ private:
   const QString DEFAULT_UI = "direct_connect_dialog.ui";
   ;
 };
-
-#endif // DIRECT_CONNECT_DIALOG_H

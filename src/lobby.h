@@ -1,5 +1,4 @@
-#ifndef LOBBY_H
-#define LOBBY_H
+#pragma once
 
 class QLabel;
 class QLineEdit;
@@ -109,5 +108,3 @@ private slots:
   void onReloadThemeRequested(); // Oh boy.
   void onSettingsRequested();
 };
-
-#endif // LOBBY_H

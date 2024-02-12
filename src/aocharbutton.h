@@ -1,5 +1,4 @@
-#ifndef AOCHARBUTTON_H
-#define AOCHARBUTTON_H
+#pragma once
 
 #include "aoapplication.h"
 #include "aoimage.h"
@@ -45,5 +44,3 @@ protected:
 #endif
   void leaveEvent(QEvent *e) override;
 };
-
-#endif // AOCHARBUTTON_H

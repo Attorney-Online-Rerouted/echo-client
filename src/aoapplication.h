@@ -6,28 +6,24 @@
 #include "discord_rich_presence.h"
 #include "widgets/aooptionsdialog.h"
 
-#include "bass.h"
+#include <bass.h>
 
 #include <QApplication>
-#include <QFile>
-#include <QSettings>
-#include <QVector>
-
-#include <QDebug>
-#include <QRect>
-
-#include <QCryptographicHash>
-
-#include <QDir>
-#include <QStandardPaths>
-
 #include <QColor>
+#include <QCryptographicHash>
+#include <QDebug>
+#include <QDir>
+#include <QElapsedTimer>
+#include <QFile>
+#include <QObjectList>
+#include <QRect>
 #include <QScreen>
+#include <QSettings>
+#include <QStandardPaths>
 #include <QStringList>
 #include <QTextStream>
 #include <QTime>
-
-#include <QElapsedTimer>
+#include <QVector>
 
 class NetworkManager;
 class Lobby;
@@ -52,12 +48,12 @@ inline uint qHash(const VPath &key, uint seed = qGlobalQHashSeed())
   return qHash(key.toQString(), seed);
 }
 
-class AOApplication : public QApplication
+class AOApplication : public QObject
 {
   Q_OBJECT
 
 public:
-  AOApplication(int &argc, char **argv);
+  AOApplication(QObject *parent = nullptr);
   ~AOApplication();
 
   NetworkManager *net_manager;

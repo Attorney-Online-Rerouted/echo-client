@@ -200,11 +200,19 @@ void Courtroom::refresh_evidence()
   QPoint f_spacing = ao_app->get_button_spacing("evidence_button_spacing", "courtroom_design.ini");
   QPoint p_point = ao_app->get_button_spacing("evidence_button_size", "courtroom_design.ini");
 
-  const int button_width = p_point.x();
+  int button_width = p_point.x();
+  if (button_width < 1)
+  {
+    button_width = 40;
+  }
   int x_spacing = f_spacing.x();
   int x_mod_count = 0;
 
-  const int button_height = p_point.y();
+  int button_height = p_point.y();
+  if (button_height < 1)
+  {
+    button_height = 40;
+  }
   int y_spacing = f_spacing.y();
   int y_mod_count = 0;
 

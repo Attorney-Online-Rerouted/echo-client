@@ -76,6 +76,18 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(echo-core)
 endif()
 
+if(NOT TARGET echo-server)
+include(FetchContent)
+message("Fetching server...")
+set(ECHO_BUILD_SERVER_RUNTIME OFF)
+FetchContent_Declare(
+    echo-server
+    GIT_REPOSITORY https://github.com/Attorney-Online-Rerouted/echo-server.git
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/server
+)
+FetchContent_MakeAvailable(echo-server)
+endif()
+
 target_link_libraries(echo-client PRIVATE
   Qt6::Core
   Qt6::Gui
@@ -89,6 +101,8 @@ target_link_libraries(echo-client PRIVATE
   bassmidi
   discord-rpc
   echo-core
+  echo-server
+  SpriteChatShared
 )
 
 if(WIN32)

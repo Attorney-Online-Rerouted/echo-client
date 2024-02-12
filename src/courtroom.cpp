@@ -3084,7 +3084,7 @@ void Courtroom::handle_callwords()
       // Play the call word sfx on the modcall_player sound container
       modcall_player->play(ao_app->get_court_sfx("word_call"));
       // Make the window flash
-      ao_app->alert(this);
+      qApp->alert(this);
       // Break the loop so we don't spam sound effects
       break;
     }
@@ -4531,7 +4531,7 @@ void Courtroom::mod_called(QString p_ip)
   if (!ui_guard->isChecked())
   {
     modcall_player->play(ao_app->get_court_sfx("mod_call"));
-    ao_app->alert(this);
+    qApp->alert(this);
   }
 }
 
@@ -6285,7 +6285,7 @@ void Courtroom::truncate_label_text(QWidget *p_widget, QString p_identifier)
     return;
   }
 
-  int checkbox_width = AOApplication::style()->pixelMetric(QStyle::PM_IndicatorWidth) + AOApplication::style()->pixelMetric(QStyle::PM_CheckBoxLabelSpacing);
+  int checkbox_width = qApp->style()->pixelMetric(QStyle::PM_IndicatorWidth) + qApp->style()->pixelMetric(QStyle::PM_CheckBoxLabelSpacing);
 
   int label_theme_width = (p_label != nullptr ? design_ini_result.width : (design_ini_result.width - checkbox_width));
   int label_px_width = p_widget->fontMetrics().boundingRect(label_text_tr).width(); // pixel width of our translated text
